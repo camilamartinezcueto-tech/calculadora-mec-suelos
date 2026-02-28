@@ -1,0 +1,618 @@
+:root {
+  /* Paleta de colores técnica y moderna */
+  --bg-primary: #f8fafc;
+  /* Gris muy claro / Blanco */
+  --bg-secondary: #ffffff;
+  --bg-tertiary: #f1f5f9;
+
+  --text-primary: #1e293b;
+  /* Gris antracita */
+  --text-secondary: #475569;
+  --text-muted: #64748b;
+
+  --accent-blue-solid: #0ea5e9;
+  /* Azul sólido */
+  --accent-blue-light: #e0f2fe;
+  /* Azul celeste */
+  --accent-blue-dark: #0369a1;
+  /* Azul petróleo */
+
+  --border-color: #e2e8f0;
+
+  /* Estados de validación */
+  --success: #10b981;
+  --error: #ef4444;
+  --error-bg: #fef2f2;
+  --warning: #f59e0b;
+
+  /* Espaciado y cuadrícula */
+  --spacing-xs: 0.25rem;
+  --spacing-sm: 0.5rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 1.5rem;
+  --spacing-xl: 2rem;
+
+  --border-radius: 6px;
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  line-height: 1.5;
+  font-size: 15px;
+}
+
+/* Header */
+.app-header {
+  background-color: var(--bg-secondary);
+  border-bottom: 1px solid var(--border-color);
+  padding: var(--spacing-lg) var(--spacing-md);
+  box-shadow: var(--shadow-sm);
+  margin-bottom: var(--spacing-xl);
+}
+
+.header-container {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.app-header h1 {
+  font-size: 1.5rem;
+  color: var(--accent-blue-dark);
+  font-weight: 600;
+  letter-spacing: -0.025em;
+}
+
+.app-header p {
+  color: var(--text-secondary);
+  font-size: 0.875rem;
+  margin-top: var(--spacing-xs);
+}
+
+/* Main Layout */
+.app-main {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 var(--spacing-md) var(--spacing-xl);
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: 320px 1fr 400px;
+  gap: var(--spacing-lg);
+  align-items: start;
+}
+
+/* Panels */
+.panel {
+  background-color: var(--bg-secondary);
+  border-radius: var(--border-radius);
+  border: 1px solid var(--border-color);
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.panel-header {
+  background-color: var(--bg-tertiary);
+  padding: var(--spacing-md) var(--spacing-lg);
+  border-bottom: 1px solid var(--border-color);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.panel-header h2 {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.panel-content {
+  padding: var(--spacing-lg);
+  flex: 1;
+}
+
+/* Forms */
+.form-group {
+  margin-bottom: var(--spacing-md);
+}
+
+.form-group label {
+  display: block;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  margin-bottom: var(--spacing-xs);
+}
+
+.form-control {
+  width: 100%;
+  padding: 0.5rem 0.75rem;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.9rem;
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
+  background-color: var(--bg-secondary);
+  color: var(--text-primary);
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.form-control:focus {
+  outline: none;
+  border-color: var(--accent-blue-solid);
+  box-shadow: 0 0 0 3px var(--accent-blue-light);
+}
+
+.input-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--spacing-md);
+  margin-bottom: var(--spacing-lg);
+}
+
+/* Input Append (Units) */
+.input-group {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.input-group .form-control {
+  padding-right: 2.5rem;
+  /* Space for unit */
+}
+
+.input-group-text {
+  position: absolute;
+  right: 1px;
+  top: 1px;
+  bottom: 1px;
+  padding: 0 0.5rem;
+  background-color: var(--bg-tertiary);
+  border-left: 1px solid var(--border-color);
+  border-top-right-radius: var(--border-radius);
+  border-bottom-right-radius: var(--border-radius);
+  color: var(--text-muted);
+  font-size: 0.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+}
+
+/* Switches / Toggles */
+.mode-switch {
+  margin-bottom: var(--spacing-lg);
+  padding: var(--spacing-sm);
+  background-color: var(--accent-blue-light);
+  border-radius: var(--border-radius);
+  border: 1px solid var(--accent-blue-solid);
+}
+
+.switch-container {
+  display: flex;
+  align-items: center;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--accent-blue-dark);
+  cursor: pointer;
+}
+
+.switch-container input {
+  margin-right: var(--spacing-sm);
+  accent-color: var(--accent-blue-solid);
+}
+
+/* Buttons */
+.actions {
+  display: flex;
+  gap: var(--spacing-sm);
+  margin-top: var(--spacing-lg);
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem 1rem;
+  font-family: inherit;
+  font-size: 0.875rem;
+  font-weight: 500;
+  border-radius: var(--border-radius);
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  width: 100%;
+}
+
+.btn-primary {
+  background-color: var(--accent-blue-solid);
+  color: white;
+}
+
+.btn-primary:hover {
+  background-color: var(--accent-blue-dark);
+}
+
+.btn-secondary {
+  background-color: var(--bg-tertiary);
+  color: var(--text-secondary);
+  border-color: var(--border-color);
+}
+
+.btn-secondary:hover {
+  background-color: #e2e8f0;
+  color: var(--text-primary);
+}
+
+.btn-sm {
+  padding: 0.25rem 0.5rem;
+  font-size: 0.75rem;
+  width: auto;
+}
+
+.btn-outline {
+  background-color: transparent;
+  border-color: var(--accent-blue-solid);
+  color: var(--accent-blue-solid);
+}
+
+.btn-outline:hover {
+  background-color: var(--accent-blue-light);
+}
+
+/* Panel Central (Procedimiento) */
+.procedure-panel {
+  min-height: 500px;
+}
+
+#procedure-content {
+  overflow-y: auto;
+  max-height: 80vh;
+}
+
+.empty-state {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  color: var(--text-muted);
+  text-align: center;
+  font-style: italic;
+  padding: var(--spacing-xl);
+}
+
+/* Estilos de Pasos Matemáticos */
+.math-step {
+  margin-bottom: var(--spacing-lg);
+  padding: var(--spacing-md);
+  background-color: var(--bg-primary);
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
+}
+
+.math-step-title {
+  font-weight: 600;
+  color: var(--accent-blue-dark);
+  margin-bottom: var(--spacing-sm);
+  font-size: 0.9rem;
+  border-bottom: 1px solid #e2e8f0;
+  padding-bottom: 4px;
+}
+
+.katex-display {
+  margin: 0.5em 0 !important;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+/* Panel Derecho (Gráficas) */
+.visuals-grid {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+  max-height: 80vh;
+  overflow-y: auto;
+}
+
+.visual-card {
+  background-color: var(--bg-primary);
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
+  padding: var(--spacing-md);
+}
+
+.visual-card h3 {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  margin-bottom: var(--spacing-sm);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* Contenedores para Gráficos */
+#phase-diagram {
+  height: 200px;
+  width: 100%;
+  display: flex;
+  position: relative;
+  background-color: var(--bg-tertiary);
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+#proportions-chart,
+#e-n-chart,
+#gamma-w-chart {
+  width: 100% !important;
+  max-height: 200px;
+}
+
+#cube-3d {
+  width: 100%;
+  height: 200px;
+  background-color: #000;
+  border-radius: 4px;
+}
+
+/* Simulador Saturador */
+.simulator-card .slider-container {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xs);
+}
+
+.simulator-card label {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  display: flex;
+  justify-content: space-between;
+}
+
+#s-value-display {
+  font-weight: 600;
+  color: var(--accent-blue-dark);
+}
+
+input[type=range] {
+  width: 100%;
+  accent-color: var(--accent-blue-solid);
+}
+
+/* Modal */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal.hidden {
+  display: none;
+}
+
+.modal-content {
+  background-color: var(--bg-secondary);
+  padding: var(--spacing-xl);
+  border-radius: var(--border-radius);
+  width: 100%;
+  max-width: 500px;
+  box-shadow: var(--shadow-md);
+  position: relative;
+}
+
+.modal-content.warning {
+  border-top: 4px solid var(--error);
+}
+
+.close-btn {
+  position: absolute;
+  top: var(--spacing-md);
+  right: var(--spacing-md);
+  cursor: pointer;
+  font-size: 1.5rem;
+  color: var(--text-muted);
+  line-height: 1;
+}
+
+.modal-title {
+  color: var(--error);
+  font-weight: 600;
+  margin-bottom: var(--spacing-sm);
+}
+
+/* ============================================================
+   MODO TOGGLE (Cálculo / Simulación)
+   ============================================================ */
+.app-mode-toggle {
+  display: flex;
+  gap: 0;
+  border: 1px solid var(--accent-blue-solid);
+  border-radius: var(--border-radius);
+  overflow: hidden;
+  margin-bottom: var(--spacing-lg);
+}
+
+.mode-option {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  padding: 0.45rem 0.5rem;
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: var(--accent-blue-dark);
+  transition: background 0.15s, color 0.15s;
+  background: #fff;
+  user-select: none;
+}
+
+.mode-option:first-child {
+  border-right: 1px solid var(--accent-blue-solid);
+}
+
+.mode-option input[type=radio] {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+  pointer-events: none;
+}
+
+.mode-option:has(input:checked) {
+  background: var(--accent-blue-solid);
+  color: #fff;
+}
+
+.mode-label {
+  pointer-events: none;
+}
+
+/* ============================================================
+   PANEL DE SIMULACIÓN
+   ============================================================ */
+.sim-info-box {
+  background: #fffbeb;
+  border: 1px solid #f59e0b;
+  border-radius: var(--border-radius);
+  padding: var(--spacing-sm) var(--spacing-md);
+  font-size: 0.82rem;
+  color: #78350f;
+  margin-bottom: var(--spacing-md);
+  line-height: 1.5;
+}
+
+.sim-panel {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+}
+
+.sim-panel label {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+}
+
+.sim-panel label strong {
+  color: var(--accent-blue-dark);
+}
+
+.sim-results {
+  background: var(--bg-tertiary);
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
+  padding: var(--spacing-md);
+  max-height: 320px;
+  overflow-y: auto;
+}
+
+.sim-placeholder {
+  color: var(--text-muted);
+  font-style: italic;
+  font-size: 0.85rem;
+  text-align: center;
+  padding: var(--spacing-sm);
+}
+
+.sim-results-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.sim-result-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px 8px;
+  background: #fff;
+  border-radius: 4px;
+  border: 1px solid var(--border-color);
+  font-size: 0.82rem;
+}
+
+.sim-lbl {
+  color: var(--text-secondary);
+  font-weight: 500;
+}
+
+.sim-val {
+  color: var(--accent-blue-dark);
+  font-weight: 600;
+  font-family: 'Courier New', monospace;
+}
+
+/* ============================================================
+   DIAGRAMA DE FASES — soporte SVG
+   ============================================================ */
+#phase-diagram {
+  height: auto !important;
+  min-height: 200px;
+  overflow: visible !important;
+  background: #fff !important;
+}
+
+#phase-diagram svg {
+  display: block;
+  width: 100%;
+}
+
+/* ============================================================
+   HIDDEN UTILITY
+   ============================================================ */
+.hidden {
+  display: none !important;
+}
+
+/* ============================================================
+   INPUTS DESACTIVADOS
+   ============================================================ */
+.form-control:disabled {
+  background-color: var(--bg-tertiary);
+  color: var(--text-muted);
+  cursor: not-allowed;
+}
+
+/* Responsividad */
+@media (max-width: 1200px) {
+  .grid-container {
+    grid-template-columns: 1fr;
+  }
+
+  .visuals-grid {
+    flex-direction: row;
+    flex-wrap: wrap;
+    max-height: none;
+    overflow: visible;
+  }
+
+  .visual-card {
+    flex: 1 1 calc(50% - var(--spacing-md));
+    min-width: 300px;
+  }
+
+  #procedure-content {
+    max-height: 50vh;
+  }
+}
