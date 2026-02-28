@@ -1,11 +1,11 @@
 # Calculadora de Mecánica de Suelos
 
 Desarrollado por:
-- Camila
+- Andrea Camila Martínez Cueto 
 - Miguel
 
 Asesorado por:
-- Cristian Vásquez
-- Miguel Ortiz
+- MSc. Cristian Vásquez ()
+- MSc. Miguel Angel Ortiz Padilla (miguel.ortizp@upb.edu.co)
 
 Créditos: Antigravity IA
