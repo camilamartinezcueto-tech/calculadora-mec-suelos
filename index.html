@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Mecánica de Suelos</title>
+
+    <!-- Fuentes Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- KaTeX CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+
+    <!-- Estilos de la aplicación -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <header class="app-header">
+        <div class="header-container">
+            <h1>Análisis Volumétrico y Gravimétrico de Suelos</h1>
+            <p>Calculadora técnica paso a paso orientada a estudiantes de ingeniería civil.</p>
+        </div>
+    </header>
+
+    <main class="app-main">
+        <div class="grid-container">
+            <!-- Panel Izquierdo: Entradas -->
+            <section class="panel input-panel">
+                <div class="panel-header">
+                    <h2>Entrada de Datos</h2>
+                </div>
+                <div class="panel-content">
+
+                    <!-- Toggle Modo -->
+                    <div class="app-mode-toggle">
+                        <label class="mode-option" onclick="">
+                            <input type="radio" name="app-mode" id="mode-calc" value="calc" checked
+                                onchange="document.getElementById('panel-calc-mode').style.display='';document.getElementById('panel-sim-mode').style.display='none';">
+                            <span class="mode-label">📐 Cálculo Real</span>
+                        </label>
+                        <label class="mode-option" onclick="">
+                            <input type="radio" name="app-mode" id="mode-sim" value="sim"
+                                onchange="document.getElementById('panel-calc-mode').style.display='none';document.getElementById('panel-sim-mode').style.display='';">
+                            <span class="mode-label">🔬 Simulación</span>
+                        </label>
+                    </div>
+
+                    <div id="panel-calc-mode">
+                        <div class="form-group">
+                            <label for="soil-type">Tipo de Suelo:</label>
+                            <select id="soil-type" class="form-control">
+                                <option value="partially_saturated">Parcialmente Saturado</option>
+                                <option value="saturated">Saturado</option>
+                                <option value="dry">Seco</option>
+                                <option value="extra_layer">Parcialmente Saturado con Capa Extra</option>
+                            </select>
+                        </div>
+
+                        <div class="mode-switch">
+                            <label class="switch-container">
+                                <input type="checkbox" id="normalized-mode">
+                                <span class="checkmark"></span>
+                                Modo Teórico Normalizado (Vs = 1)
+                            </label>
+                        </div>
+
+                        <div class="input-grid" id="data-inputs">
+                            <!-- Generado dinámicamente -->
+                        </div>
+
+                        <div class="actions">
+                            <button id="btn-calculate" class="btn btn-primary">Calcular</button>
+                            <button id="btn-reset" class="btn btn-secondary">Limpiar</button>
+                        </div>
+                    </div>
+
+                    <!-- Panel de Simulación -->
+                    <div id="panel-sim-mode" class="hidden">
+                        <div class="sim-info-box">
+                            <p>⚙️ <strong>Modo Simulación:</strong> Primero calcula un ejercicio real, luego usa los
+                                controles para explorar qué pasa si S cambia. Los valores de <em>Vs</em>, <em>Vt</em> y
+                                <em>Gs</em> se mantienen fijos.
+                            </p>
+                        </div>
+                        <div class="sim-panel">
+                            <label for="sim-sat-slider">Grado de Saturación (S): <strong
+                                    id="sim-s-display">50%</strong></label>
+                            <input type="range" id="sim-sat-slider" min="0" max="1" step="0.01" value="0.5">
+
+                            <div class="sim-results" id="sim-results">
+                                <p class="sim-placeholder">Calcula datos reales primero para activar la simulación.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Panel Central: Resultados y Procedimiento -->
+            <section class="panel procedure-panel">
+                <div class="panel-header">
+                    <h2>Desarrollo Matemático</h2>
+                    <button id="btn-export" class="btn btn-outline btn-sm">Exportar PDF</button>
+                </div>
+                <div class="panel-content" id="procedure-content">
+                    <div class="empty-state">
+                        <p>Ingrese los datos y presione "Calcular" para ver el procedimiento paso a paso.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Panel Derecho: Visualizaciones -->
+            <section class="panel visuals-panel">
+                <div class="panel-header">
+                    <h2>Análisis Visual</h2>
+                </div>
+                <div class="panel-content visuals-grid">
+                    <div class="visual-card" id="phase-diagram-container">
+                        <h3>Diagrama de Fases</h3>
+                        <div id="phase-diagram"></div>
+                    </div>
+
+                    <div class="visual-card" id="proportions-chart-container">
+                        <h3>Proporciones Volumétricas</h3>
+                        <canvas id="proportions-chart"></canvas>
+                    </div>
+
+                    <div class="visual-card" id="cube-3d-container">
+                        <h3>Modelo 3D Conceptual</h3>
+                        <div id="cube-3d"></div>
+                    </div>
+
+                    <div class="visual-card" id="e-n-chart-container">
+                        <h3>Relación e vs n</h3>
+                        <canvas id="e-n-chart"></canvas>
+                    </div>
+
+                    <div class="visual-card" id="gamma-w-chart-container">
+                        <h3>Variación del Peso Unitario vs w</h3>
+                        <canvas id="gamma-w-chart"></canvas>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Modal de alertas físicas -->
+    <div id="alert-modal" class="modal hidden">
+        <div class="modal-content warning">
+            <span class="close-btn">&times;</span>
+            <h3 class="modal-title">Advertencia de Consistencia Física</h3>
+            <p id="alert-message"></p>
+        </div>
+    </div>
+
+    <!-- Librerías Externas -->
+    <!-- KaTeX -->
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+    <!-- Three.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <!-- jsPDF -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <!-- html2canvas (para PDF) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
+    <!-- Scripts de la Aplicación -->
+    <script src="js/engine.js?v=3"></script>
+    <script src="js/visuals.js?v=3"></script>
+    <script src="js/app.js?v=3"></script>
+</body>
+
+</html>
