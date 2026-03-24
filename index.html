@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calculadora de Mecánica de Suelos</title>
 
-    <!-- Fuentes Google Fonts: Inter -->
+    <!-- Google Fonts: Inter -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -37,12 +37,12 @@
 
                     <!-- Toggle Modo -->
                     <div class="app-mode-toggle">
-                        <label class="mode-option" onclick="">
+                        <label class="mode-option">
                             <input type="radio" name="app-mode" id="mode-calc" value="calc" checked
                                 onchange="document.getElementById('panel-calc-mode').style.display='';document.getElementById('panel-sim-mode').style.display='none';">
                             <span class="mode-label">📐 Cálculo Real</span>
                         </label>
-                        <label class="mode-option" onclick="">
+                        <label class="mode-option">
                             <input type="radio" name="app-mode" id="mode-sim" value="sim"
                                 onchange="document.getElementById('panel-calc-mode').style.display='none';document.getElementById('panel-sim-mode').style.display='';">
                             <span class="mode-label">🔬 Simulación</span>
@@ -50,6 +50,19 @@
                     </div>
 
                     <div id="panel-calc-mode">
+
+                        <!-- Selector de Unidades -->
+                        <div class="form-group unit-selector-group">
+                            <label for="unit-selector">🔢 Sistema de Unidades:</label>
+                            <select id="unit-selector" class="form-control unit-select">
+                                <option value="g/cm³"  selected>g/cm³ — CGS (laboratorio)</option>
+                                <option value="kg/m³">kg/m³ — SI (masa)</option>
+                                <option value="kN/m³">kN/m³ — SI (fuerza)</option>
+                                <option value="N/m³">N/m³ — SI (fuerza pequeña)</option>
+                                <option value="lb/ft³">lb/ft³ — Imperial</option>
+                            </select>
+                        </div>
+
                         <div class="form-group">
                             <label for="soil-type">Tipo de Suelo:</label>
                             <select id="soil-type" class="form-control">
@@ -157,21 +170,16 @@
     </div>
 
     <!-- Librerías Externas -->
-    <!-- KaTeX -->
     <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
-    <!-- Chart.js -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
-    <!-- Three.js -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-    <!-- jsPDF -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-    <!-- html2canvas (para PDF) -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 
     <!-- Scripts de la Aplicación -->
-    <script src="engine.js?v=3"></script>
-    <script src="visuals.js?v=3"></script>
-    <script src="app.js?v=3"></script>
+    <script src="engine.js?v=4"></script>
+    <script src="visuals.js?v=4"></script>
+    <script src="app.js?v=4"></script>
 </body>
 
 </html>
